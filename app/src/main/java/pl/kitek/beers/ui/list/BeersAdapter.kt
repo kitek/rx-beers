@@ -3,6 +3,7 @@ package pl.kitek.beers.ui.list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
@@ -61,9 +62,11 @@ class BeersAdapter(
     private fun createBeerViewHolder(parent: ViewGroup): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.beer_item, parent, false)
         itemView.setOnClickListener(this)
+
         return BeersViewHolder(
             itemView.beerImage,
             itemView.beerNameTxt,
+            itemView.beerTagTxt,
             itemView.beerDescriptionTxt,
             itemView
         )
@@ -71,7 +74,8 @@ class BeersAdapter(
 
     private fun createLoadMoreViewHolder(parent: ViewGroup): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.load_more, parent, false)
-        itemView.setOnClickListener(this)
+        itemView.findViewById<Button>(R.id.loadMoreBtn).setOnClickListener(this)
+
         return LoadMoreViewHolder(itemView)
     }
 
@@ -89,6 +93,7 @@ class BeersAdapter(
     private class BeersViewHolder(
         private val beerImage: ImageView,
         private val beerNameTxt: TextView,
+        private val beerTagLineTxt: TextView,
         private val beerDescriptionTxt: TextView,
         itemView: View
     ) : ViewHolder(itemView) {
@@ -97,6 +102,7 @@ class BeersAdapter(
             itemView.tag = position
             beerImage.load(beer.imageUrl)
             beerNameTxt.text = beer.name
+            beerTagLineTxt.text = beer.tagline
             beerDescriptionTxt.text = beer.description
         }
     }

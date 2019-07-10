@@ -17,9 +17,7 @@ import kotlin.math.min
     private val remote: BeerRemoteSource
 ) {
 
-    fun getBeers(
-        endAt: Int
-    ): Observable<Snapshot<Page<Beer>>> {
+    fun getBeers(endAt: Int): Observable<Snapshot<Page<Beer>>> {
         return local.getBeersSize().toObservable()
             .flatMap { currentSize ->
                 val isResume = currentSize == endAt
@@ -30,6 +28,7 @@ import kotlin.math.min
     private fun resume(endAt: Int): Observable<Snapshot<Page<Beer>>> {
         return Observable.concat<Snapshot<Page<Beer>>>(
             local.getBeers(endAt).toObservable(),
+
             Observable.zip(
                 local.getBeers(endAt).toObservable(),
 

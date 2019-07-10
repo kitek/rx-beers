@@ -26,6 +26,10 @@ abstract class RxObservableUseCase<P, T>(
         return subscribe(doWork(), onNext, onError)
     }
 
+    protected fun clearLastResult() {
+        this.lastResult = null
+    }
+
     private fun subscribe(
         doWork: Observable<T>,
         onNext: (t: T) -> Unit,

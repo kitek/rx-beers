@@ -1,0 +1,100 @@
+{
+	"metadata": {
+		"total": 13,
+		"limit": 10,
+		"offset": 0
+	},
+	"items": [
+		{
+			"id": "one",
+			"name": "Tyskie z Tanka",
+			"tagline": "Lager",
+			"description": "Piwo dostępne w lokalach gastronomicznych. Piwo z Tanka charakteryzuje maksymalnie skrócony system dystrybucji oraz innowacyjny system przechowywania i rozlewania.",
+			"imageUrl": "https://images.punkapi.com/v2/60.png",
+			"abv": 65,
+			"createdAt": 1560761861031
+		},
+		{
+			"id": "two",
+			"name": "Warka Strong",
+			"tagline": "Mocne",
+			"description": "Jasne piwo dolnej fermentacji typu lager o zawartości ekstraktu 12,5% oraz alkoholu 5,5%. Produkowane jest w browarze w Warce od 1975 r. oraz w browarze w Żywcu i browarze w Elblągu.",
+			"imageUrl": "https://images.punkapi.com/v2/61.png",
+			"abv": 65,
+			"createdAt": 1560761861031
+		},
+		{
+			"id": "three",
+			"name": "Atak chmielu",
+			"tagline": "American India Pale Ale",
+			"description": "Fantazyjnie nachmielone piwo w stylu American India Pale Ale. Pierwsza AIPA z polskiego browaru. Atak Chmielu warzymy od 28 marca 2011 r.",
+			"imageUrl": "https://images.punkapi.com/v2/62.png",
+			"abv": 65,
+			"createdAt": 1560761861031
+		},
+		{
+			"id": "four",
+			"name": "Żywiec",
+			"tagline": "Lager",
+			"description": "Żywiec to klasyczny lager o delikatnym, roślinnym aromacie; wytrawny i chmielowy. Jest najważniejszą marką piwa w Grupie Żywiec oraz największą polską marką piwa w segmencie premium.",
+			"imageUrl": "https://images.punkapi.com/v2/63.png",
+			"abv": 65,
+			"createdAt": 1560761861031
+		},
+		{
+			"id": "five",
+			"name": "Heineken",
+			"tagline": "Jasny lager",
+			"description": "Piwo ma bladożółtą barwę (7 EBC) oraz 'lekki, nieskomplikowany smak', cechuje je 'duża stabilność i swoista szlachetna subtelność'. Warzone jest z brzeczki o ekstrakcie 11,4%, zawiera 5% alkoholu i 23 jednostki goryczy IBU.",
+			"imageUrl": "https://images.punkapi.com/v2/64.png",
+			"abv": 65,
+			"createdAt": 1560761861031
+		},
+		{
+			"id": "six",
+			"name": "Special",
+			"tagline": "Pilzner",
+			"description": "Specjal Jasny Pełny to doskonałe, klasyczne piwo typu Pils. Jest warzone w renomowanym browarze w Elblągu z najlepszych składników i według tradycyjnej receptury.",
+			"imageUrl": "https://images.punkapi.com/v2/8.png",
+			"abv": 65,
+			"createdAt": 1560761861031
+		},
+		{
+			"id": "seven",
+			"name": "Wojak",
+			"tagline": "Jasny lager",
+			"description": "Pierwotnie Wojak warzony był w Browarze w Kielcach, jednakże po likwidacji zakładu w 2009 roku produkcja została przeniesiona do Tyskich Browarów Książęcych. Piwo produkowane było niegdyś w trzech odmianach różniących się zawartością ekstraktu oraz alkoholu.",
+			"imageUrl": "https://images.punkapi.com/v2/66.png",
+			"abv": 65,
+			"createdAt": 1560761861031
+		},
+		{
+			"id": "eight",
+			"name": "Kasztelan",
+			"tagline": "Lager",
+			"description": "Jasnobursztynowa barwa, pełna klarowność, kusząca piana, intensywna goryczka i jedyna w swoim rodzaju chmielowa nuta bukietu zapachowego, a wszystko to z czystego ekologicznie terenu Mazowsza i Kujaw, z najlepszych naturalnych składników (własny słód, woda oligoceńska). Kasztelan Jasne Pełne to ulubiony trunek piwoszy szukających szlachetnego smaku i dobrej zabawy",
+			"imageUrl": "https://images.punkapi.com/v2/67.png",
+			"abv": 65,
+			"createdAt": 1560761861031
+		},
+		{
+			"id": "nine",
+			"name": "Okocim Jasne Okocimskie",
+			"tagline": "Lager",
+			"description": "Piwo, które powstaje w hołdzie Janowi Goetzowi - założycielowi Browaru Okocim. Nasze Jasne Okocimskie warzymy na bazie tylko trzech składników. Dzięki połączeniu wody, chmielu i słodu idealnie balansujemy smak oraz aromat piwa, którego korzenie sięgają aż 1845 roku (opis ze strony producenta).",
+			"imageUrl": "https://images.punkapi.com/v2/80.png",
+			"abv": 65,
+			"createdAt": 1560761861031
+		},
+		{
+			"id": "ten",
+			"name": "Lech Premium",
+			"tagline": "Premium Lager",
+			"description": "Lech Premium to jedna z czołowych marek Kompanii Piwowarskiej, która istnieje na rynku już od początku lat osiemdziesiątych. Doprowadzony do perfekcji proces produkcji Lecha w poznańskim browarze, jednym z najnowocześniejszych browarów w Europie, jest gwarancją najwyższej jakości piwa Lech.",
+			"imageUrl": "https://images.punkapi.com/v2/69.png",
+			"abv": 65,
+			"createdAt": 1560761861031
+		}
+
+	]
+}

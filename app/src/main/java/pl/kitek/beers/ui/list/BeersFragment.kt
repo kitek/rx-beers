@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
@@ -15,7 +16,6 @@ import pl.kitek.beers.presenter.BaseFragment
 import pl.kitek.beers.presenter.BaseViewModel
 import pl.kitek.beers.ui.list.BeersFragment.PVM
 import pl.kitek.beers.ui.list.BeersPresenter.UI
-import timber.log.Timber
 import javax.inject.Inject
 
 class BeersFragment : BaseFragment<BeersPresenter, UI, PVM>(), UI,
@@ -57,8 +57,12 @@ class BeersFragment : BaseFragment<BeersPresenter, UI, PVM>(), UI,
         presenter?.refreshBeers()
     }
 
+    override fun showError(err: Throwable) {
+        val message = err.message ?: "Error occurred"
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+    }
+
     override fun onBeerClick(beer: Beer) {
-        Timber.tag("kitek").d("onBeerClick: $beer ")
     }
 
     override fun onLoadMoreClick() {

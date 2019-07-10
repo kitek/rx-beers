@@ -1,0 +1,37 @@
+
+{
+	"metadata": {
+		"total": 13,
+		"limit": 10,
+		"offset": 10
+	},
+	"items": [
+		{
+			"id": "eleven",
+			"name": "Harnaś Jasne Pełne",
+			"tagline": "Pale Lager",
+			"description": "Szlachetne męskie piwo pełne siły, humoru i pogody ducha. Orzeźwia i cieszy swoim wyjątkowym smakiem i aromatem. Idealne po pracy.",
+			"imageUrl": "https://images.punkapi.com/v2/91.png",
+			"abv": 65,
+			"createdAt": 1560761861031
+		},
+		{
+			"id": "twelve",
+			"name": "Tatra Jasne Pełne",
+			"tagline": "Pale Lager",
+			"description": "Tatra to marka znana i ceniona przez piwoszy w Polsce, a jej popularność stale rośnie. Warzone jest w renomowanych browarach Grupy Żywiec. Tatra Jasne Pełne to klasyczne piwo typu pilzneńskiego o wyraźnym aromacie i doskonałym, orzeźwiającym smaku.",
+			"imageUrl": "https://images.punkapi.com/v2/73.png",
+			"abv": 65,
+			"createdAt": 1560761861031
+		},
+		{
+			"id": "13",
+			"name": "Żubr",
+			"tagline": "Strong Pale Lager",
+			"description": "Żubr kojarzony jest z nieskażoną przyrodą, której bliskość wpływa na jego niepowtarzalny smak. Warzony z naturalnych składników od ponad 200 lat na skraju Puszczy Białowieskiej, jest idealny na zakończenie każdego dnia. Żubr jest pełen spokoju i harmonii, znakomity w czasie relaksu na świeżym powietrzu po trudach tygodnia. To druga pod względem wielkości sprzedaży marka piwa w Polsce.",
+			"imageUrl": "https://images.punkapi.com/v2/100.png",
+			"abv": 65,
+			"createdAt": 1560761861031
+		}	
+	]
+}

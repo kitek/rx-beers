@@ -9,7 +9,6 @@ import pl.kitek.beers.data.model.Metadata
 import pl.kitek.beers.data.model.Page
 import pl.kitek.beers.data.model.Snapshot
 import pl.kitek.beers.data.repository.BeerRepository
-import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
@@ -28,18 +27,10 @@ class BeerLocalSource @Inject constructor() {
     )
 
     fun getBeers(endAt: Int): Maybe<Snapshot<Page<Beer>>> {
-//        val endAtPage = (endAt - BeerRepository.LIMIT) / BeerRepository.LIMIT
         var endAtPage = ceil(endAt / BeerRepository.LIMIT.toFloat()).toInt()
-        if (endAtPage > 0) endAtPage -= 1 else 0
-        Timber.tag("kitek").d("endAtPage: $endAtPage ")
-
-
+        if (endAtPage > 0) endAtPage -= 1 else endAtPage = 0
         val maxEndAtPage = if (cache.size > 0) cache.size - 1 else 0
         if (endAtPage > maxEndAtPage) {
-            Timber.tag("kitek").d(
-                "BeerLocalSource.getBeers(endAt: $endAt, endAtPage: $endAtPage) " +
-                        "| skipped not enough items (current: ${cache.size}) required: $endAtPage"
-            )
             return Maybe.empty()
         }
 
@@ -48,21 +39,12 @@ class BeerLocalSource @Inject constructor() {
         var lastMetadata: Metadata? = null
 
         (0..endAtPage).forEach { index ->
-            Timber.tag("kitek").d("cache.index: $index -> size:${cache[index]?.data?.items?.size}")
             cache[index]?.let { snapshot ->
                 lastCreatedAt = snapshot.createdAt
                 lastMetadata = snapshot.data.metadata
                 items.addAll(snapshot.data.items)
             }
         }
-
-        Timber.tag("kitek")
-            .d(
-                "BeerLocalSource.getBeers(endAt: $endAt, endAtPage: $endAtPage) " +
-                        "| pages: ${cache.size} | items: ${items.size} | lastCreatedAt: $lastCreatedAt " +
-                        "| lastMetadata: $lastMetadata"
-            )
-
 
         if (null == lastMetadata) return Maybe.empty()
         if (null == lastCreatedAt) return Maybe.empty()
@@ -76,8 +58,6 @@ class BeerLocalSource @Inject constructor() {
     fun set(snapshot: Snapshot<Page<Beer>>) {
         val page = snapshot.data.metadata.offset / BeerRepository.LIMIT
         cache[page] = snapshot
-
-        Timber.tag("kitek").d("BeerLocalSource.set(page: $page) | cache.size: ${cache.size}")
     }
 
     fun invalidate(): Completable = Completable.fromAction {

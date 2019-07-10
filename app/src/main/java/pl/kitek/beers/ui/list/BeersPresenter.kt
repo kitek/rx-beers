@@ -7,7 +7,6 @@ import pl.kitek.beers.presenter.BasePresenter
 import pl.kitek.beers.ui.common.addTo
 import pl.kitek.beers.ui.list.BeersPresenter.UI
 import pl.kitek.beers.usecase.GetBeersUseCase
-import timber.log.Timber
 import javax.inject.Inject
 
 class BeersPresenter @Inject constructor(
@@ -20,8 +19,6 @@ class BeersPresenter @Inject constructor(
     }
 
     private fun loadBeers(refresh: Boolean = false) {
-        Timber.tag("kitek").d("Load beers (refresh: $refresh)...")
-
         val param = GetBeersUseCase.Param(refresh, getBeersUseCase.currentEndAt)
         getBeersUseCase.execute(param, ::showBeers, ::showError).addTo(disposable)
     }
@@ -31,8 +28,6 @@ class BeersPresenter @Inject constructor(
     }
 
     fun loadMore() {
-        Timber.tag("kitek").d("Load more beers...")
-
         val param = GetBeersUseCase.Param(false, getBeersUseCase.nextEndAt)
         getBeersUseCase.execute(param, ::showBeers, ::showError).addTo(disposable)
     }
@@ -47,18 +42,18 @@ class BeersPresenter @Inject constructor(
     }
 
     private fun showBeers(snapshot: Snapshot<Page<Beer>>) {
-        Timber.tag("kitek").d("** BeersPresenter.showBeers (size: ${snapshot.data.items.size}) ")
         ui().perform { ui ->
             if (snapshot.isNewer) ui.showSnackBar() else ui.showBeers(snapshot.data)
         }
     }
 
     private fun showError(err: Throwable) {
-        Timber.tag("kitek").e("ERROR: $err ")
+        ui().perform { ui -> ui.showError(err) }
     }
 
     interface UI {
         fun showBeers(page: Page<Beer>)
+        fun showError(err: Throwable)
         fun showSnackBar()
         fun scrollBeersToTop()
     }

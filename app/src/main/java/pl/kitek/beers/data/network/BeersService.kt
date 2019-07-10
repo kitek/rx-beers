@@ -10,8 +10,6 @@ import retrofit2.http.Path
 interface BeersService {
 
     @GET("beers/{offset}/{limit}")
-    fun getBeers(
-        @Path("offset") offset: Int, @Path("limit") limit: Int
-    ): Single<Page<Beer>>
+    fun getBeers(@Path("offset") offset: Int, @Path("limit") limit: Int): Single<Page<Beer>>
 
 }

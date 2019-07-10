@@ -34,7 +34,7 @@ class AppModule {
         val gson = GsonBuilder().create()
 
         return Retrofit.Builder()
-            .baseUrl("http://10.168.20.122:3000/")
+            .baseUrl("http://10.0.2.2:3000/")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
