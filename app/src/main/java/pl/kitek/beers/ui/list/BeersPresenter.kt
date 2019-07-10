@@ -7,6 +7,7 @@ import pl.kitek.beers.presenter.BasePresenter
 import pl.kitek.beers.ui.common.addTo
 import pl.kitek.beers.ui.list.BeersPresenter.UI
 import pl.kitek.beers.usecase.GetBeersUseCase
+import pl.kitek.beers.usecase.GetBeersUseCase.Param
 import javax.inject.Inject
 
 class BeersPresenter @Inject constructor(
@@ -19,7 +20,7 @@ class BeersPresenter @Inject constructor(
     }
 
     private fun loadBeers(refresh: Boolean = false) {
-        val param = GetBeersUseCase.Param(refresh, getBeersUseCase.currentEndAt)
+        val param = Param(refresh, getBeersUseCase.currentEndAt)
         getBeersUseCase.execute(param, ::showBeers, ::showError).addTo(disposable)
     }
 
@@ -28,7 +29,7 @@ class BeersPresenter @Inject constructor(
     }
 
     fun loadMore() {
-        val param = GetBeersUseCase.Param(false, getBeersUseCase.nextEndAt)
+        val param = Param(false, getBeersUseCase.nextEndAt)
         getBeersUseCase.execute(param, ::showBeers, ::showError).addTo(disposable)
     }
 

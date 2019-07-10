@@ -27,48 +27,56 @@ import kotlin.math.min
 
     private fun resume(endAt: Int): Observable<Snapshot<Page<Beer>>> {
         return Observable.concat<Snapshot<Page<Beer>>>(
-            local.getBeers(endAt).toObservable(),
+            getLocalBeers(endAt),
 
             Observable.zip(
-                local.getBeers(endAt).toObservable(),
-
-                remote.getBeers(0, LIMIT)
-                    .doAfterSuccess { snapshot -> local.set(snapshot) }
-                    .toObservable(),
-
-                BiFunction<Snapshot<Page<Beer>>, Snapshot<Page<Beer>>, Snapshot<Page<Beer>>> { localPage, remotePage ->
-
-                    val toIndex = min(LIMIT, localPage.data.items.size)
-                    val firstLocalPageItems = localPage.data.items.subList(0, toIndex)
-
-                    val areItemsTheSame = firstLocalPageItems != remotePage.data.items
-                    if (areItemsTheSame) remotePage else localPage
-                }
+                getLocalBeers(endAt),
+                getRemoteBeers(offset = 0),
+                PagesComparator()
             )
         )
-            .distinct { it.data }
+            .distinct { snapshot -> snapshot.data }
             .scan { a: Snapshot<Page<Beer>>, b: Snapshot<Page<Beer>> ->
                 b.copy(isNewer = a.createdAt < b.createdAt)
             }
     }
 
+
     private fun load(endAt: Int): Observable<Snapshot<Page<Beer>>> {
         val offset = endAt - LIMIT
         return Observable.concat(
-            local.getBeers(endAt).toObservable(),
+            getLocalBeers(endAt),
+
             remote.getBeers(offset, LIMIT)
                 .doOnSuccess { local.set(it) }
                 .flatMapObservable { local.getBeers(endAt).toObservable() }
 
         )
-            .distinct { it.data }
+            .distinct { snapshot -> snapshot.data }
             .scan { a: Snapshot<Page<Beer>>, b: Snapshot<Page<Beer>> ->
                 b.copy(isNewer = a.createdAt < b.createdAt)
             }
     }
 
-    fun invalidate(): Completable {
-        return local.invalidate()
+    fun invalidate(): Completable = local.invalidate()
+
+    private fun getLocalBeers(endAt: Int) = local.getBeers(endAt).toObservable()
+
+    private fun getRemoteBeers(offset: Int): Observable<Snapshot<Page<Beer>>>? {
+        return remote.getBeers(offset, LIMIT)
+            .doAfterSuccess { snapshot -> local.set(snapshot) }
+            .toObservable()
+    }
+
+    private class PagesComparator : BiFunction<Snapshot<Page<Beer>>, Snapshot<Page<Beer>>, Snapshot<Page<Beer>>> {
+
+        override fun apply(localPage: Snapshot<Page<Beer>>, remotePage: Snapshot<Page<Beer>>): Snapshot<Page<Beer>> {
+            val toIndex = min(LIMIT, localPage.data.items.size)
+            val firstLocalPageItems = localPage.data.items.subList(0, toIndex)
+
+            val areItemsTheSame = firstLocalPageItems != remotePage.data.items
+            return if (areItemsTheSame) remotePage else localPage
+        }
     }
 
     companion object {
