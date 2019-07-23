@@ -15,7 +15,6 @@ import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 import kotlin.math.ceil
 
-@SuppressLint("BinaryOperationInTimber")
 class BeerLocalSource @Inject constructor() {
 
     @SuppressLint("UseSparseArrays")

@@ -1,14 +1,14 @@
 package pl.kitek.beers.usecase
 
 import io.reactivex.Observable
-import pl.kitek.beers.ErrorReportingService
 import pl.kitek.beers.data.model.Beer
 import pl.kitek.beers.data.model.Page
 import pl.kitek.beers.data.model.Snapshot
 import pl.kitek.beers.data.repository.BeerRepository
 import pl.kitek.beers.usecase.GetBeersUseCase.Param
-import pl.kitek.beers.usecase.executor.UseCaseExecutor
-import pl.kitek.beers.usecase.usecase.RxObservableUseCase
+import pl.kitek.beers.usecase.common.ErrorReportingService
+import pl.kitek.beers.usecase.common.RxObservableUseCase
+import pl.kitek.beers.usecase.common.executor.UseCaseExecutor
 import javax.inject.Inject
 
 class GetBeersUseCase @Inject constructor(

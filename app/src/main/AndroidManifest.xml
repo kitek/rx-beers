@@ -12,11 +12,11 @@
         android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name="pl.kitek.beers.BeersApp"
+        android:name="pl.kitek.beers.presentation.BeersApp"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name="pl.kitek.beers.MainActivity">
+        <activity android:name="pl.kitek.beers.presentation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
